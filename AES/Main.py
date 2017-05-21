@@ -30,6 +30,7 @@ def main():
     state = ET.AddRoundKey(input_bytes,cipher_key)
     PrintSomething(input_bytes,"plaintext")
     PrintSomething(cipher_key,"cipherkey")
+    print ("-----------------")
 
     for i in range (1,10): # starting 9 rounds
 
@@ -55,10 +56,11 @@ def main():
             state = ET.AddRoundKey(state, RK.RoundKey8())
         if (i == 9):
             state = ET.AddRoundKey(state, RK.RoundKey9())
-
+        print ("State : " , state , "Step : ", i)
     state = ET.SubBytes(state)
     state = ET.ShiftRows(state)
     state = ET.AddRoundKey(state,RK.RoundKey10())
+    print ("---------------------------")
     PrintSomething(state,"encrypted text")
 
 main()
